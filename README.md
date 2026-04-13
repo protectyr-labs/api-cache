@@ -36,6 +36,14 @@ print(client.cache_stats)            # {"enabled": True, "size": 1, "volume": 83
 - **`requests_remaining` property** -- check your budget before making a call
 - **Per-request TTL override** -- `client.get("/data", ttl=60)` for short-lived entries
 
+## Use Cases
+
+**Data pipeline API calls** -- Your pipeline calls 5 external APIs. Cache responses to avoid redundant calls on reruns. Rate limiting prevents getting banned.
+
+**Development and testing** -- During development, you call the same API endpoints repeatedly. Cache saves time and API quota.
+
+**Multi-source aggregation** -- Aggregate data from 10 sources, each with different rate limits. One client class handles caching and throttling for all of them.
+
 ## API
 
 | Method / Property | Purpose |
